@@ -19,3 +19,9 @@ print("DATA-2 code generatoe")
 
 # adding one line
 print("one line code generatoe")
+
+
+
+
+# adding 2 line
+print("2 line code generatoe")
