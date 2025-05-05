@@ -1,0 +1,20 @@
+To deploy:
+* Refresh API key pair from aws.eftours.tech
+
+* Create repo if not already exists:
+    aws ecr create-repository --repository-name prefect/default.runner
+
+* Log into ECR:
+    Dev  = aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 800110064595.dkr.ecr.us-east-1.amazonaws.com
+    Prod = aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 960969968266.dkr.ecr.us-east-1.amazonaws.com
+
+* Build the image:
+    docker build -t prefect/default.runner .
+
+* Tag image:
+    Dev  = docker tag prefect/default.runner:latest 800110064595.dkr.ecr.us-east-1.amazonaws.com/prefect/default.runner:latest
+    Prod = docker tag prefect/default.runner:latest 960969968266.dkr.ecr.us-east-1.amazonaws.com/prefect/default.runner:latest
+
+* Push image:
+    Dev  = docker push 800110064595.dkr.ecr.us-east-1.amazonaws.com/prefect/default.runner:latest
+    Prod = docker push 960969968266.dkr.ecr.us-east-1.amazonaws.com/prefect/default.runner:latest
